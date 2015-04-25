@@ -117,7 +117,7 @@ describe "XES::Attribute" do
   it 'should format date attribute as XML' do
     Time.now.tap do |time|
       XES.date("time:timestamp", time).format.to_s.should ==
-        "<date key='time:timestamp' value='%s'/>" % time.iso8601
+        "<date key='time:timestamp' value='%s'/>" % time.iso8601(3)
     end
   end
 
