@@ -43,6 +43,16 @@ describe "XES::Attribute" do
       XES::Attribute.new("id", "identity:id", "123")
   end
 
+  it 'should make list attribute' do
+    XES.list("identity:id").should ==
+      XES::Attribute.new("list", "identity:id", "")
+  end
+
+  it 'should make container attribute' do
+    XES.container("identity:id").should ==
+      XES::Attribute.new("container", "identity:id", "")
+  end
+
   it 'should get the type' do
     XES::Attribute.new("string", "concept:name", "A").type.should == "string"
   end
@@ -139,6 +149,16 @@ describe "XES::Attribute" do
   it 'should format id attribute as XML' do
     XES.id("identity:id", "123456").format(Nokogiri::XML::Document.new).to_s.should ==
       %Q{<id key="identity:id" value="123456"/>}
+  end
+
+  it 'should format list attribute as XML' do
+    XES.list("identity:id").format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<list key="identity:id"/>}
+  end
+
+  it 'should format container attribute as XML' do
+    XES.container("identity:id").format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<container key="identity:id"/>}
   end
 
   it 'should format attribute with meta attribute as XML' do

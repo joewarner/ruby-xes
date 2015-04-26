@@ -202,10 +202,26 @@ module XES
       Attribute.new("id", key, value, meta)
     end
     
+    # Return list attribute object.
+    #
+    # @param key [String]
+    #   attribute name
+    # @param meta [Array<Attribute>]
+    #   meta attributes
+    # @return [Attribute]
+    #   list attribute
     def list(key, meta=[])
       Attribute.new("list", key, '', meta)
     end
     
+    # Return container attribute object.
+    #
+    # @param key [String]
+    #   attribute name
+    # @param meta [Array<Attribute>]
+    #   meta attributes
+    # @return [Attribute]
+    #   container attribute
     def container(key, meta=[])
       Attribute.new("container", key, '', meta)
     end
