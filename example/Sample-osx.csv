@@ -1,0 +1,17 @@
+Case ID,Activity,Start Date,End Date,Agent Position,Customer ID,Product,Service Type,Resource
+Case 1,Inbound Call,9.3.10 8:05,9.3.10 8:10,FL,Customer 1,MacBook Pro,Referred to Servicer,Helen
+Case 1,Handle Case,11.3.10 10:30,11.3.10 10:32,FL,Customer 1,MacBook Pro,Referred to Servicer,Helen
+Case 1,Call Outbound,11.3.10 11:45,11.3.10 11:52,FL,Customer 1,MacBook Pro,Referred to Servicer,Henk
+Case 2,Inbound Call,4.3.10 11:43,4.3.10 11:46,FL,Customer 2,MacBook Pro,Referred to Servicer,Susi
+Case 3,Inbound Call,25.3.10 9:32,25.3.10 9:33,FL,Customer 3,MacBook Pro,Referred to Servicer,Mary
+Case 4,Inbound Call,6.3.10 11:41,6.3.10 11:51,FL,Customer 4,iPhone,Referred to Servicer,Fred
+Case 5,Inbound Call,18.3.10 10:54,18.3.10 11:01,FL,Customer 5,MacBook Pro,Product Assistance,Kenny
+Case 6,Inbound Call,25.3.10 17:09,25.3.10 17:13,FL,Customer 6,MacBook Pro,Referred to Servicer,Harold
+Case 6,Inbound Call,25.3.10 17:16,25.3.10 17:18,FL,Customer 6,MacBook Pro,Referred to Servicer,Nancy
+Case 6,Inbound Call,26.3.10 8:36,26.3.10 8:40,FL,Customer 6,MacBook Pro,Referred to Servicer,Elena
+Case 7,Inbound Call,18.3.10 11:49,18.3.10 11:50,FL,Customer 7,MacBook Pro,Product Assistance,Karen
+Case 8,Inbound Call,11.3.10 9:20,11.3.10 9:23,FL,Customer 8,MacBook Pro,Referred to Servicer,Karen
+Case 9,Inbound Email,19.3.10 19:47,21.3.10 8:17,FL,Customer 9,MacBook Pro,Product Assistance,Samuil
+Case 9,Call Outbound,21.3.10 8:32,21.3.10 8:33,FL,Customer 9,MacBook Pro,Product Assistance,Samuil
+Case 9,Handle Email,21.3.10 8:33,21.3.10 8:33,FL,Customer 9,MacBook Pro,Product Assistance,Samuil
+Case 10,Handle Email,27.3.10 11:29,27.3.10 11:30,FL,Customer 10,iPhone,Product Assistance,Jochem
