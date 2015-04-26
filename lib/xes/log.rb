@@ -120,10 +120,10 @@ module XES
       raise FormatError.new(self) unless formattable?
 
       Nokogiri::XML::Element.new("log", doc).tap do |log|
-        log["xes.version"] = @xes_version
-        log["xes.features"] = @xes_features
-        log["xmlns"] = @xmlns
-        log["openxes.version"] = @openxes_version unless @openxes_version == nil
+        log["xes.version"] = @xes_version.to_s if @xes_version
+        log["xes.features"] = @xes_features.to_s if @xes_features
+        log["openxes.version"] = @openxes_version.to_s if @openxes_version
+        log["xmlns"] = @xmlns.to_s if @xmlns
         @extensions.each do |extension|
           log.add_child(extension.format(doc)) if extension.formattable?
         end
