@@ -20,7 +20,7 @@ module XES
 
     # Format as a XML document.
     #
-    # @return [REXML::Document]
+    # @return [Nokogiri::XML::Document]
     #   XML document
     # @raise FormatError
     #   format error when the document is not formattable

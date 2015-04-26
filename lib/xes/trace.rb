@@ -30,7 +30,7 @@ module XES
 
     # Format as a XML element.
     #
-    # @return [REXML::Element]
+    # @return [Nokogiri::XML::Element]
     #   XML element
     # @raise FormatError
     def format(doc)

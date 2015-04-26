@@ -37,7 +37,7 @@ module XES
 
     # Format as a XML element.
     #
-    # @return [REXML::Element]
+    # @return [Nokogiri::XML::Element]
     #   XML element
     def format(doc)
       raise FormatError.new(self) unless formattable?
