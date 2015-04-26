@@ -39,13 +39,13 @@ module XES
     #
     # @return [REXML::Element]
     #   XML element
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new("extension").tap do |ext|
-        ext.attributes["name"] = @name
-        ext.attributes["prefix"] = @prefix
-        ext.attributes["uri"] = @uri
+      Nokogiri::XML::Element.new("extension", doc).tap do |ext|
+        ext["name"] = "#{@name}"
+        ext["prefix"] = "#{@prefix}"
+        ext["uri"] = "#{@uri}"
       end
     end
 

@@ -110,41 +110,43 @@ describe "XES::Attribute" do
   end
 
   it 'should format string attribute as XML' do
-    XES.string("concept:name", "A").format.to_s.should ==
-      "<string key='concept:name' value='A'/>"
+    XES.string("concept:name", "A").format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<string key="concept:name" value="A"/>}
   end
 
   it 'should format date attribute as XML' do
     Time.now.tap do |time|
-      XES.date("time:timestamp", time).format.to_s.should ==
-        "<date key='time:timestamp' value='%s'/>" % time.iso8601(3)
+      XES.date("time:timestamp", time.iso8601(3)).format(Nokogiri::XML::Document.new).to_s.should ==
+        '<date key="time:timestamp" value="%s"/>' % time.iso8601(3)
     end
   end
 
   it 'should format int attribute as XML' do
-    XES.int("counter", 123).format.to_s.should ==
-      "<int key='counter' value='123'/>"
+    XES.int("counter", 123).format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<int key="counter" value="123"/>}
   end
 
   it 'should format float attribute as XML' do
-    XES.float("counter", 0.123).format.to_s.should ==
-      "<float key='counter' value='0.123'/>"
+    XES.float("counter", 0.123).format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<float key="counter" value="0.123"/>}
   end
 
   it 'should format boolean attribute as XML' do
-    XES.boolean("truth", true).format.to_s.should ==
-      "<boolean key='truth' value='true'/>"
+    XES.boolean("truth", true).format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<boolean key="truth" value="true"/>}
   end
 
   it 'should format id attribute as XML' do
-    XES.id("identity:id", "123456").format.to_s.should ==
-      "<id key='identity:id' value='123456'/>"
+    XES.id("identity:id", "123456").format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<id key="identity:id" value="123456"/>}
   end
 
   it 'should format attribute with meta attribute as XML' do
     XES.string("concept:name", "A").tap do |x|
       x.identity_id = "123456"
-    end.format.to_s.should ==
-      "<string key='concept:name' value='A'><id key='identity:id' value='123456'/></string>"
+    end.format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<string key="concept:name" value="A">
+  <id key="identity:id" value="123456"/>
+</string>}
   end
 end

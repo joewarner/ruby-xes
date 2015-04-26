@@ -84,7 +84,13 @@ describe "XES::Log" do
           event.attributes << XES.string("concept:name", "test")
         end
       end
-    end.format.to_s.should ==
-      "<log xes.features='' xes.version='1.4' xmlns='http://www.xes-standard.org/'><trace><event><string key='concept:name' value='test'/></event></trace></log>"
+    end.format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<log xes.version="2.0" xes.features="" xmlns="http://www.xes-standard.org/">
+  <trace>
+    <event>
+      <string key="concept:name" value="test"/>
+    </event>
+  </trace>
+</log>}
   end
 end

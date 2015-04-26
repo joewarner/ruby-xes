@@ -52,12 +52,14 @@ module XES
     #
     # @return [REXML::Element]
     #   XML element
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new("global").tap do |global|
-        global.attributes["scope"] = @scope.to_s
-        @attributes.each {|attribute| global.elements << attribute.format}
+      Nokogiri::XML::Element.new("global", doc).tap do |gbl|
+        gbl["scope"] = "#{@scope.to_s}"
+        @attributes.each do |attribute|
+          gbl.add_child(attribute.format(doc)) if attribute.formattable?
+        end
       end
     end
 

@@ -1,4 +1,5 @@
 require "rexml/document"
+require "nokogiri"
 require "time"
 
 require "xes/version"

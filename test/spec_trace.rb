@@ -101,13 +101,13 @@ describe "XES::Trace" do
 
   it "should raise FormatError because the trace has no events" do
     should.raise(XES::FormatError) do
-      XES::Trace.new.format
+      XES::Trace.new.format(Nokogiri::XML::Document.new)
     end
   end
 
   it "should raise FormatError because events of the trace are invalid" do
     should.raise(XES::FormatError) do
-      XES::Trace.new.tap{|x| x.events << XES::Event.new}.format
+      XES::Trace.new.tap{|x| x.events << XES::Event.new}.format(Nokogiri::XML::Document.new)
     end
   end
 end

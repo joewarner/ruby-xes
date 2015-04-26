@@ -27,10 +27,9 @@ module XES
     def format
       raise FormatError.new(self) unless formattable?
 
-      REXML::Document.new.tap do |doc|
-        doc << REXML::XMLDecl.new
-        doc.elements << @log.format
-      end
+      doc = Nokogiri::XML::Document.new
+      doc.add_child(@log.format(doc))
+      doc.to_xml
     end
 
     # @api private

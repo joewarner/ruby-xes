@@ -96,7 +96,9 @@ describe "XES::Event" do
   end
 
   it "should format as XML" do
-    XES::Event.new([XES.string("concept:name", "A")]).format.to_s.should ==
-      "<event><string key='concept:name' value='A'/></event>"
+    XES::Event.new([XES.string("concept:name", "A")]).format(Nokogiri::XML::Document.new).to_s.should ==
+      %Q{<event>
+  <string key="concept:name" value="A"/>
+</event>}
   end
 end

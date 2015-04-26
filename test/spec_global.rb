@@ -120,12 +120,16 @@ describe "XES::Global" do
   it "should format event global as XML element" do
     XES::Global.event.tap do |global|
       global.concept_name = "A"
-    end.format.to_s.should == "<global scope='event'><string key='concept:name' value='A'/></global>"
+    end.format(Nokogiri::XML::Document.new).to_s.should == %Q{<global scope="event">
+  <string key="concept:name" value="A"/>
+</global>}
   end
 
   it "should format trace global as XML element" do
     XES::Global.trace.tap do |global|
       global.concept_name = "A"
-    end.format.to_s.should == "<global scope='trace'><string key='concept:name' value='A'/></global>"
+    end.format(Nokogiri::XML::Document.new).to_s.should == %Q{<global scope="trace">
+  <string key="concept:name" value="A"/>
+</global>}
   end
 end

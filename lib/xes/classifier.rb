@@ -32,12 +32,12 @@ module XES
     #
     # @return [REXML::Element]
     #   XML element
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new("classifier").tap do |ext|
-        ext.attributes["name"] = @name
-        ext.attributes["keys"] = @keys
+      Nokogiri::XML::Element.new("classifier", doc).tap do |cls|
+        cls["name"] = "#{@name}"
+        cls["keys"] = "#{@keys}"
       end
     end
 

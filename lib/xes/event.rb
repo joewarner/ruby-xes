@@ -27,10 +27,10 @@ module XES
     #
     # @return [REXML::Element]
     #   XML element
-    def format
-      REXML::Element.new("event").tap do |event|
+    def format(doc)
+      Nokogiri::XML::Element.new("event", doc).tap do |evt|
         @attributes.each do |attribute|
-          event.elements << attribute.format if attribute.formattable?
+          evt.add_child(attribute.format(doc)) if attribute.formattable?
         end
       end
     end

@@ -30,7 +30,7 @@ module XES
       #   new log instance
       def default
         new.tap do |log|
-          log.xes_version = "1.4"
+          log.xes_version = "2.0"
           log.xes_features = "nested-attributes"
           log.openxes_version = "1.0RC7"
           log.extensions = [
@@ -90,7 +90,7 @@ module XES
     attr_accessor :traces
 
     def initialize
-      @xes_version = "1.4"
+      @xes_version = "2.0"
       @xes_features = ""
       @openxes_version = nil
       @xmlns = "http://www.xes-standard.org/"
@@ -116,20 +116,28 @@ module XES
     #   XML element
     # @raise FormatError
     #   format error when the log is formattable
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new("log").tap do |log|
-        log.attributes["xes.version"] = @xes_version.to_s if @xes_version
-        log.attributes["xes.features"] = @xes_features.to_s if @xes_features
-        log.attributes["openxes.version"] = @openxes_version.to_s if @openxes_version
-        log.attributes["xmlns"] = @xmlns.to_s if @xmlns
-        @extensions.each {|ext| log.elements << ext.format if ext.formattable?}
-        @classifiers.each {|classifier| log.elements << classifier.format if classifier.formattable?}
-        log.elements << @event_global.format if @event_global.formattable?
-        log.elements << @trace_global.format if @trace_global.formattable?
-        @attributes.each {|attribute| log.elements << attribute.format if attribute.formattable?}
-        @traces.each {|trace| log.elements << trace.format if trace.formattable?}
+      Nokogiri::XML::Element.new("log", doc).tap do |log|
+        log["xes.version"] = @xes_version
+        log["xes.features"] = @xes_features
+        log["xmlns"] = @xmlns
+        log["openxes.version"] = @openxes_version unless @openxes_version == nil
+        @extensions.each do |extension|
+          log.add_child(extension.format(doc)) if extension.formattable?
+        end
+        @classifiers.each do |classifier|
+          log.add_child(classifier.format(doc)) if classifier.formattable?
+        end
+        log.add_child(@trace_global.format(doc)) if @trace_global.formattable?
+        log.add_child(@event_global.format(doc)) if @event_global.formattable?
+        @attributes.each do |attribute|
+          log.add_child(attribute.format(doc)) if attribute.formattable?
+        end
+        @traces.each do |trace|
+          log.add_child(trace.format(doc)) if trace.formattable?
+        end
       end
     end
 

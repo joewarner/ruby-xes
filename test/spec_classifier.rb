@@ -20,7 +20,7 @@ describe "XES::Classifier" do
   end
 
   it "should format as XML element" do
-    XES::Classifier.new("Event Name", "concept:name").format.to_s.should ==
-      "<classifier keys='concept:name' name='Event Name'/>"
+    XES::Classifier.new("Event Name", "concept:name").format(Nokogiri::XML::Document.new).to_s.should ==
+      '<classifier name="Event Name" keys="concept:name"/>'
   end
 end

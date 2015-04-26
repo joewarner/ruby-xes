@@ -68,13 +68,15 @@ module XES
     end
 
     # Format as a XML element.
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new(type).tap do |attribute|
-        attribute.attributes["key"] = @key
-        attribute.attributes["value"] = format_value
-        meta.each {|m| attribute.elements << m.format if m.formattable?}
+      Nokogiri::XML::Element.new(@type, doc).tap do |el|
+        el["key"] = "#{@key}"
+        el["value"] = "#{@value}"
+        meta.each do |m|
+          el.add_child(m.format(doc)) if m.formattable?
+        end
       end
     end
 

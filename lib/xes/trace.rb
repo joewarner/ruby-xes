@@ -33,12 +33,16 @@ module XES
     # @return [REXML::Element]
     #   XML element
     # @raise FormatError
-    def format
+    def format(doc)
       raise FormatError.new(self) unless formattable?
 
-      REXML::Element.new("trace").tap do |trace|
-        @attributes.each {|attribute| trace.elements << attribute.format if attribute.formattable?}
-        @events.each {|event| trace.elements << event.format if event.formattable?}
+      Nokogiri::XML::Element.new("trace", doc).tap do |trc|
+        @attributes.each do |attribute|
+          trc.add_child(attribute.format(doc)) if attribute.formattable?
+        end
+        @events.each do |event|
+          trc.add_child(event.format(doc)) if event.formattable?
+        end
       end
     end
 
