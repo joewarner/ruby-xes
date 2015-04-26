@@ -73,7 +73,9 @@ module XES
 
       Nokogiri::XML::Element.new(@type, doc).tap do |el|
         el["key"] = "#{@key}"
-        el["value"] = "#{@value}"
+        if not (@type.eql?('list') or @type.eql?('container'))
+          el["value"] = "#{@value}"
+        end
         meta.each do |m|
           el.add_child(m.format(doc)) if m.formattable?
         end
@@ -198,6 +200,14 @@ module XES
     #   id attribute
     def id(key, value, meta=[])
       Attribute.new("id", key, value, meta)
+    end
+    
+    def list(key, meta=[])
+      Attribute.new("list", key, '', meta)
+    end
+    
+    def container(key, meta=[])
+      Attribute.new("container", key, '', meta)
     end
   end
 end
