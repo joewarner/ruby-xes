@@ -19,9 +19,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency "bacon", "~> 0"
+  gem.add_development_dependency "bacon", "~> 1.2", ">= 1.2.0"
   gem.add_development_dependency "yard", "~> 0.8", ">= 0.8.5"
-  gem.add_development_dependency "redcarpet"
-  gem.add_development_dependency "rake", "~> 0"
+  gem.add_development_dependency "redcarpet", "~> 3.2", ">= 3.2.3"
+  gem.add_development_dependency "rake", "~> 10.3", ">= 10.3.2"
   gem.add_development_dependency "nokogiri", "~> 1.6"
 end

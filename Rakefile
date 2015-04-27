@@ -1,5 +1,7 @@
 require "bundler/gem_tasks"
 
+task :default => [:test]
+
 desc 'Test specs'
 task 'test' do
   sh "bundle exec bacon -a"
