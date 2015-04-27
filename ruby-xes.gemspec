@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "bacon", "~> 0"
   gem.add_development_dependency "yard", "~> 0.8", ">= 0.8.5"
-  gem.add_development_dependency "redcarpet", "~> 0"
+  gem.add_development_dependency "redcarpet"
   gem.add_development_dependency "rake", "~> 0"
   gem.add_development_dependency "nokogiri", "~> 1.6"
 end
